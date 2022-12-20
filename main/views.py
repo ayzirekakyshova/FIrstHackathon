@@ -11,7 +11,14 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Q
 
-
+class CourseViewSet(ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    
+    def get_permissions(self):
+        if self.action in ['retrieve', 'list', 'search']:
+            return [IsAuthenticated()]
+        return [IsMentor()]
 
 
 
