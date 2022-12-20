@@ -15,31 +15,8 @@ class User(models.Model):
 class Film(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
-    genre = models.ForeignKey()
     year = models.PositiveIntegerField()
     poster = models.ImageField()
     runtime = models.PositiveIntegerField()
     cast = models.TextField()
 
-class Comment(models.Model):
-    user_id = models.IntegerChoices()
-    body = models.TextField
-    craeted_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
-
-
-    @property
-    def average_rating(self):
-        ratings = self.ratings.all() 
-        values = []
-        for rating in ratings:
-            values.append(rating.value)
-        if values:
-            return sum(values) / len(values)
-        return 0
-
-    class Meta:
-        ordering = ['id']
-
-    def __str__(self):
-        return f'{self.course}'
