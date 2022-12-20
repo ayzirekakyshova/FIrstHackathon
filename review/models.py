@@ -10,6 +10,12 @@ class favorutie(models.Model):
         user_id = models.IntegerField
         film_id = models.IntegerField
 
+class Rating(models.Model):
+    user_id = models.IntegerField
+    film_id = models.IntegerField
+    value = models.enums
+
+
 # @property
 # def average_rating(self):
 #     ratings = self.ratings.all() 
@@ -22,8 +28,3 @@ class favorutie(models.Model):
 
 # class Meta:
 #         ordering = ['id']
-
-class Rating(models.Model):
-    user_id = models.IntegerField
-    film_id = models.IntegerField
-    value = models.enums
