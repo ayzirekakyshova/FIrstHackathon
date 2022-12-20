@@ -39,11 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     'rest_framework',
     'drf_yasg',
     'rest_framework_simplejwt',
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     'main',
     'review',
 ]
@@ -84,7 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER':config('DB_USER'),
         'PASSWORD':config('DB_PASSWORD'),
