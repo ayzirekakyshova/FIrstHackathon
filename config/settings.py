@@ -39,18 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
     'rest_framework',
     'drf_yasg',
     'rest_framework_simplejwt',
     
-<<<<<<< HEAD
-=======
-
->>>>>>> master
+    'account',
     'main',
     'review',
 ]
@@ -143,6 +136,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'account.user'
 
 from datetime import timedelta
 
