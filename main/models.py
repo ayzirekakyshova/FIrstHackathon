@@ -20,15 +20,3 @@ class Film(models.Model):
     runtime = models.PositiveIntegerField()
     cast = models.TextField()
 
-@property
-def average_rating(self):
-        Film = Film.objects.filter(course=self)
-        values = []
-        for poster in Film:
-            values.append(Film.average_rating)
-        if values:
-            return sum(values) / len(values)
-        return 0
-    
-def __str__(self) -> str:
-        return f'{self.author} -> {self.title}'
