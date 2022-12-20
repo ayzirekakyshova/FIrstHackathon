@@ -1,9 +1,3 @@
-from django.contrib import admin
-from .models import User, Comment
-
-
-admin.site.register(User)
-
 from rest_framework.serializers import ModelSerializer
 from .models import Category, User, Film, Comment
 
@@ -41,3 +35,4 @@ class CommentSerializer(ModelSerializer):
             rep['user'] = instance.user.email
             rep['film'] = instance.movie.title
             return rep
+

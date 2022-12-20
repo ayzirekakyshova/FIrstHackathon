@@ -1,9 +1,3 @@
-from django.contrib import admin
-from .models import User
-
-
-admin.site.register(User)
-
 from rest_framework.permissions import BasePermission
 from rest_framework import permissions
 
@@ -17,3 +11,4 @@ class IsAdminOrReadOnly(BasePermission):
 class IsAuthor(BasePermission):
     def has_object_permission(self, request, view, obj):
         return request.user.is_authenticated and request.user == obj.user
+
