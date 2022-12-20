@@ -42,4 +42,4 @@ class Comment(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f'{self.course}'
+        return f'{self.body}'
