@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Category, User, Film, Comment
+from .models import Category, Film
+from .models import User, Comment
 
 class CategorySerializer(ModelSerializer):
     class Meta:

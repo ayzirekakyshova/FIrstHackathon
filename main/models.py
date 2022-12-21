@@ -1,5 +1,7 @@
 from django.db import models
 
+
+
 class Category(models.Model):
     title = models.CharField(max_length=70)
     def __str__(self):
@@ -20,9 +22,13 @@ class Film(models.Model):
     runtime = models.PositiveIntegerField()
     cast = models.TextField()
 
+class LikeFilm(models.Model):
+    author = models.ForeignKey(User,related_name='film_likes', on_delete=models.CASCADE)
+    film = models.ForeignKey(Film, related_name= 'likes',on_delete=models.CASCADE)    
+
 class Comment(models.Model):
-    user_id = models.IntegerChoices()
-    body = models.TextField
+    user = models.IntegerField()
+    body = models.TextField()
     craeted_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
