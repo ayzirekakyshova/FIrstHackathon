@@ -1,53 +1,50 @@
-from rest_framework.viewsets import ModelViewSet
+# from django.db.models import Q
+# from rest_framework.viewsets import ModelViewSet
+# from rest_framework.permissions import IsAdminUser
+# from rest_framework.decorators import action
+# from rest_framework.response import Response
+# from drf_yasg.utils import swagger_auto_schema
+# from drf_yasg import openapi
+# from .serializers import CategorySerializer, FilmSerializer
+# from .models import Category, Film
+# from .filters import FilmFilter
 
 
-from .serializers import CourseSerializer,LessonSerializer
-from .models import Course,Lesson
+# class CategoryViewSet(ModelViewSet):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
 
-from .permissions import IsMentor, IsAuthorOrReadOnly
-from rest_framework.permissions import IsAuthenticated
+# class FilmViewSet(ModelViewSet):
+#     queryset = Film.objects.all()
+#     serializer_class = FilmSerializer
+#     filterset_class = FilmFilter
+#     # filterset_fields = ['category', 'status']
 
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from django.db.models import Q
+#     def get_permissions(self):
+#         if self.action in ['retrieve', 'list', 'search']:
+#             # если это запрос на листинг или детализацию
+#             return [] # разрешаем всем
+#         return [IsAdminUser()] # разрешаем только админам
 
-class CourseViewSet(ModelViewSet):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    
-    def get_permissions(self):
-        if self.action in ['retrieve', 'list', 'search']:
-            return [IsAuthenticated()]
-        return [IsMentor()]
+#     @swagger_auto_schema(manual_parameters=[
+#         openapi.Parameter('q', openapi.IN_QUERY, type=openapi.TYPE_STRING)
+#     ])
+#     @action(['GET'], detail=False)
+#     def search(self, request):
+#         # /Film/search/?q=hello
+#         # query_params = {'q':'hello'}
+#         q = request.query_params.get('q')
+#         queryset = self.get_queryset() # Film.objects.all()
+#         if q:
+#             # queryset = queryset.filter(title__icontains=q) # title ilike '%hello%'
+#             queryset = queryset.filter(Q(title__icontains=q) | Q(description__icontains=q))
+#             # title ilike '%hello%' or description ilike '%hello%'
+#         # get_serializer - ProductSerializer
 
+#         pagination = self.paginate_queryset(queryset)
+#         if pagination:
+#             serializer = self.get_serializer(pagination, many=True)
+#             return self.get_paginated_response(serializer.data)
 
-
-class LessonViewSet(ModelViewSet):
-    queryset = Lesson.objects.all()
-    serializer_class = LessonSerializer
-
-    def get_permissions(self):
-        if self.action in ['retrieve', 'list', 'search']:
-            return [IsAuthenticated()]
-        return [IsMentor()]
-
-    @action(['GET'], detail=False)
-    def search(self, request):
-        q = request.query_params.get('q')
-
-        if q:
-            queryset = queryset.filter(Q(title__icontains=q) | Q(author__first_name__icontains=q) | Q(author__last_name__icontains=q))
-
-        pagination = self.paginate_queryset(queryset)
-        if pagination:
-            serializer = self.get_serializer(pagination, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data, status=200)
-
-
-
-
-
-
+#         serializer = self.get_serializer(queryset, many=True)
+#         return Response(serializer.data, status=200)
